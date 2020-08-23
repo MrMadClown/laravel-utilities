@@ -11,6 +11,7 @@ namespace MrMadClown\LaravelUtilities\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
 class ListModelsCommand extends Command
@@ -21,27 +22,21 @@ class ListModelsCommand extends Command
     /**  @var string */
     protected $description = 'Lists all Models of given class';
 
-    public function handle(): void
+    public function handle(): int
     {
         $model = $this->argument('model');
 
-//        $classes = [
-//            Feed::class,
-//            Element::class,
-//            FeedSchedule::class,
-//            Platform::class,
-//        ];
-//
-//        $class = collect($classes)->first(static function (string $class) use ($model): bool {
-//            return Str::lower(class_basename($class)) === $model;
-//        });
-
         $class = Relation::getMorphedModel($model);
 
-        if (!$class) {
-            $this->error("There is no model ${model} registered!");
+        if (!\class_exists($class)) {
+            $this->error("No Class for alias ${model} found!");
 
-            return;
+            return 1;
+        }
+        if (!($class instanceof Model)) {
+            $this->error("${model} is not a Laravel Model!");
+
+            return 1;
         }
         /** @var Builder $modelQuery */
         $modelQuery = $class::query();
@@ -60,8 +55,10 @@ class ListModelsCommand extends Command
         if ($models->isEmpty()) {
             $this->info("There are no ${model}'s in the Database");
 
-            return;
+            return 0;
         }
         $this->table(\array_keys($models->first()->getAttributes()), $models->map->getAttributes());
+
+        return 0;
     }
 }
