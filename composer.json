@@ -1,0 +1,27 @@
+{
+    "name": "mrmadclown/laravel-utilities",
+    "type": "library",
+    "description": "",
+    "require": {
+        "php": "^7.2",
+        "illuminate/database": "^7.25",
+        "illuminate/support": "^7.25",
+        "illuminate/console": "^7.25"
+    },
+    "require-dev": {
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MrMadClown\\LaravelUtilities\\ServiceProvider"
+            ]
+        }
+    },
+    "authors": [],
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "MrMadClown\\LaravelUtilities\\": "src/"
+        }
+    }
+}
