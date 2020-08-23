@@ -1,6 +1,7 @@
 {
     "name": "mrmadclown/laravel-utilities",
     "type": "library",
+    "license": "MIT",
     "description": "",
     "require": {
         "php": "^7.2",
