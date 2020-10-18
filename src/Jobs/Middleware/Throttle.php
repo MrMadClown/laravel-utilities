@@ -12,7 +12,7 @@ namespace MrMadClown\LaravelUtilities\Jobs\Middleware;
 use Illuminate\Support\Facades\Redis;
 use MrMadClown\LaravelUtilities\Jobs\ProvidesThrottleKey;
 
-class RateLimited
+class Throttle
 {
     private ?string $throttleKey;
     private int $delay;

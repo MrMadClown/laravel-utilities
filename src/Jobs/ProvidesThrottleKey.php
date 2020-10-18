@@ -9,8 +9,7 @@
 
 namespace MrMadClown\LaravelUtilities\Jobs;
 
-
-class ProvidesThrottleKey
+interface ProvidesThrottleKey
 {
-
+    public function getThrottleKey(): string;
 }

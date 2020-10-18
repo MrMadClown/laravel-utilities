@@ -51,11 +51,22 @@ use function \MrMadClown\LaravelUtilities\parse_mysql_url;
 
 #### Funnel
 Funnel jobs, takes overrides for `$limit=1`, `$funnelKey=get_class($job)` and `$delay=10` as constructor arguments.
+The Job can implement `\MrMadClown\LaravelUtilities\Jobs\ProvidesFunnelKey` to provide `$funnelKey` at runtime. 
 ```php
 use \MrMadClown\LaravelUtilities\Jobs\Middleware\Funnel;
 
 function middleware(){
-    return [new Funnel]; 
+    return [new Funnel];
+}
+```
+#### Throttle
+Throttle jobs, takes overrides for `$limit=1`, `$throttleKey=get_class($job)` and `$delay=10` as constructor arguments.
+The Job can implement `\MrMadClown\LaravelUtilities\Jobs\ProvidesThrottleKey` to provide `$throttleKey` at runtime. 
+```php
+use \MrMadClown\LaravelUtilities\Jobs\Middleware\Throttle;
+
+function middleware(){
+    return [new Throttle];
 }
 ```
 
@@ -65,7 +76,7 @@ Measures Job Execution Time, requires a `\Psr\Log\LoggerInterface` and optionall
 use \MrMadClown\LaravelUtilities\Jobs\Middleware\Measure;
 
 function middleware(){
-    return [new Measure(logger(), \Psr\Log\LogLevel::INFO)]; 
+    return [new Measure(logger(), \Psr\Log\LogLevel::INFO)];
 }
 ```
 
