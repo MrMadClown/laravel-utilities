@@ -25,6 +25,9 @@
   "autoload": {
     "psr-4": {
       "MrMadClown\\LaravelUtilities\\": "src/"
-    }
+    },
+    "files": [
+      "src/helpers.php"
+    ]
   }
 }
