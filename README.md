@@ -11,11 +11,11 @@ If you don't use auto-discovery, add the ServiceProvider to the providers array 
 ```php
 MrMadClown\LaravelUtilities\ServiceProvider::class,
 ```
-#### Commands
+### Commands
 
 The ListModelsCommand takes a ModelClass (or Morph Alias) and multiple filter arguments.
 The filter structure: [column]:[operator][value] or you can leave out the operator [column]:[value] (will resolve to '=')
-A \* will resolve to 'CONTAINS'.
+A '*' will resolve to 'CONTAINS'.
 
 ```bash
 php artisan app:list user
@@ -30,10 +30,42 @@ The ScheduleListCommand basically shows a table of all Scheduled Commands
 ```bash 
 php artisan schedule:list
 ```
-
-#### Traits
+The CheckDatabaseSize Command displays how much space your database takes up.
+```bash
+php artisan app:db:check-size
+```
+### Traits
 UsesUUID replaces the Model Key with an uuid
 ```php
 use \MrMadClown\LaravelUtilities\Database\Eloquent\Model\UsesUUID;
+```
+
+### Helpers
+Parse (HEROKU env) connection strings into LARAVEL config arrays 
+```php
+use function \MrMadClown\LaravelUtilities\parse_pusher_url;
+use function \MrMadClown\LaravelUtilities\parse_mysql_url;
+```
+
+### Job Middleware
+
+#### Funnel
+Funnel jobs, takes overrides for `$limit=1`, `$funnelKey=get_class($job)` and `$delay=10` as constructor arguments.
+```php
+use \MrMadClown\LaravelUtilities\Jobs\Middleware\Funnel;
+
+function middleware(){
+    return [new Funnel]; 
+}
+```
+
+#### Measure
+Measures Job Execution Time, requires a `\Psr\Log\LoggerInterface` and optionally a `LogLevel` as constructor arguments.
+```php
+use \MrMadClown\LaravelUtilities\Jobs\Middleware\Measure;
+
+function middleware(){
+    return [new Measure(logger(), \Psr\Log\LogLevel::INFO)]; 
+}
 ```
 

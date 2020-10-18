@@ -4,10 +4,12 @@
   "license": "MIT",
   "description": "",
   "require": {
-    "php": "^7.3",
+    "php": "^7.4",
     "illuminate/database": "^8.0",
     "illuminate/support": "^8.0",
-    "illuminate/console": "^8.0"
+    "illuminate/console": "^8.0",
+    "psr/log": "^1.1",
+    "ext-json": "*"
   },
   "require-dev": {
   },

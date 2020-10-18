@@ -1,11 +1,4 @@
 <?php
-/**
- * Luca Perna - Webdeveloper
- * Team Dementia
- * luc@rissc.com
- *
- * Date: 22.04.20
- */
 
 namespace MrMadClown\LaravelUtilities\Console\Commands;
 
@@ -53,9 +46,9 @@ class ScheduleListCommand extends Command
             return [
                 $event->getSummaryForDisplay(),
                 $event->expression,
-                json_encode($event->evenInMaintenanceMode),
-                json_encode($event->withoutOverlapping),
-                json_encode($event->onOneServer),
+                json_encode($event->evenInMaintenanceMode, JSON_THROW_ON_ERROR),
+                json_encode($event->withoutOverlapping, JSON_THROW_ON_ERROR),
+                json_encode($event->onOneServer, JSON_THROW_ON_ERROR),
             ];
         }
 

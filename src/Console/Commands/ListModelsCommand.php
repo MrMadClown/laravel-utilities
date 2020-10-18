@@ -1,11 +1,4 @@
 <?php
-/**
- * Luca Perna - Webdeveloper
- * Team Dementia
- * luc@rissc.com
- *
- * Date: 22.04.20
- */
 
 namespace MrMadClown\LaravelUtilities\Console\Commands;
 

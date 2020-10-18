@@ -1,25 +1,20 @@
 <?php
-/**
- * Luca Perna - Webdeveloper
- * Team Dementia
- * luc@rissc.com
- *
- * Date: 23.08.20
- */
 
 namespace MrMadClown\LaravelUtilities;
 
+use MrMadClown\LaravelUtilities\Console\Commands\CheckDatabaseSize;
 use MrMadClown\LaravelUtilities\Console\Commands\ListModelsCommand;
 use MrMadClown\LaravelUtilities\Console\Commands\ScheduleListCommand;
 
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
-    protected $commands = [
+    protected array $commands = [
         ListModelsCommand::class,
         ScheduleListCommand::class,
+        CheckDatabaseSize::class,
     ];
 
-    public function register()
+    public function register(): void
     {
         if ($this->app->runningInConsole()) $this->registerCommands();
     }
