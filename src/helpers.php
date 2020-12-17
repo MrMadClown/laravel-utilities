@@ -4,6 +4,11 @@ namespace MrMadClown\LaravelUtilities;
 
 use Illuminate\Support\Str;
 
+use function array_map;
+use function parse_url;
+use function ltrim;
+use function data_get;
+
 function parse_pusher_url(string $url): array
 {
     $pusherUrl = parse_url($url);

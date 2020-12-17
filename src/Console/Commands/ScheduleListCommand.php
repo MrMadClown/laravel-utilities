@@ -26,9 +26,7 @@ class ScheduleListCommand extends Command
             return;
         }
 
-        $this->table($this->getHeaders(), $events->map(function (Event $event): array {
-            return $this->getRowFrom($event);
-        }));
+        $this->table($this->getHeaders(), $events->map(fn(Event $event): array => $this->getRowFrom($event)));
     }
 
     protected function getHeaders(): array

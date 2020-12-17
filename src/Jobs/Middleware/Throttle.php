@@ -1,11 +1,4 @@
 <?php
-/**
- * Luca Perna - Webdeveloper
- * Team Dementia
- * luc@rissc.com
- *
- * Date: 18.10.20
- */
 
 namespace MrMadClown\LaravelUtilities\Jobs\Middleware;
 
@@ -25,7 +18,7 @@ class Throttle
         $this->delay = $delay;
     }
 
-    public function handle($job, $next): void
+    public function handle(object $job, \Closure|callable $next): void
     {
         Redis::throttle($this->getThrottleKey($job))
             ->block(0)
@@ -37,7 +30,7 @@ class Throttle
             );
     }
 
-    private function getThrottleKey($job): string
+    private function getThrottleKey(object $job): string
     {
         if ($job instanceof ProvidesThrottleKey) {
             return $job->getThrottleKey();

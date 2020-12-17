@@ -18,7 +18,7 @@ class Funnel
         $this->delay = $delay;
     }
 
-    public function handle($job, $next): void
+    public function handle(object $job, \Closure|callable $next): void
     {
         Redis::funnel($this->getFunnelKey($job))
             ->limit($this->limit)
@@ -28,7 +28,7 @@ class Funnel
             );
     }
 
-    private function getFunnelKey($job): string
+    private function getFunnelKey(object $job): string
     {
         if ($job instanceof ProvidesFunnelKey) {
             return $job->getFunnelKey();

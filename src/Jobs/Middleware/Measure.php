@@ -16,7 +16,7 @@ class Measure
         $this->level = $level;
     }
 
-    public function handle($job, $next): void
+    public function handle(object $job, \Closure|callable$next): void
     {
         $timeStart = microtime(true);
         try {
