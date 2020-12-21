@@ -7,16 +7,13 @@ use Psr\Log\LogLevel;
 
 class Measure
 {
-    private LoggerInterface $logger;
-    private string $level;
-
-    public function __construct(LoggerInterface $logger, string $level = LogLevel::DEBUG)
-    {
-        $this->logger = $logger;
-        $this->level = $level;
+    public function __construct(
+        private LoggerInterface $logger,
+        private string $level = LogLevel::DEBUG
+    ){
     }
 
-    public function handle(object $job, \Closure|callable$next): void
+    public function handle(object $job, callable $next): void
     {
         $timeStart = microtime(true);
         try {

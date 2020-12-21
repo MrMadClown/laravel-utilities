@@ -7,18 +7,14 @@ use MrMadClown\LaravelUtilities\Jobs\ProvidesThrottleKey;
 
 class Throttle
 {
-    private ?string $throttleKey;
-    private int $delay;
-    private int $limit;
-
-    public function __construct(int $limit = 1, string $throttleKey = null, int $delay = 10)
-    {
-        $this->limit = $limit;
-        $this->throttleKey = $throttleKey;
-        $this->delay = $delay;
+    public function __construct(
+        private int $limit = 1,
+        private ?string $throttleKey = null,
+        private int $delay = 10
+    ){
     }
 
-    public function handle(object $job, \Closure|callable $next): void
+    public function handle(object $job, callable $next): void
     {
         Redis::throttle($this->getThrottleKey($job))
             ->block(0)

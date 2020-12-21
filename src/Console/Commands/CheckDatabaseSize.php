@@ -5,7 +5,7 @@ namespace MrMadClown\LaravelUtilities\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Database\Connection;
 
-final class CheckDatabaseSize extends Command
+class CheckDatabaseSize extends Command
 {
     protected $signature = 'app:db:check-size';
 
