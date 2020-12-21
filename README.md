@@ -1,6 +1,8 @@
 # Laravel-Utilities 
+[![Build Status](https://travis-ci.org/MrMadClown/laravel-utilities.svg?branch=master)](https://travis-ci.org/MrMadClown/laravel-utilities)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Latest Stable Version](https://poser.pugx.org/mrmadclown/laravel-utilities/v/stable.svg)](https://packagist.org/packages/mrmadclown/laravel-utilities)
+[![Total Downloads](https://poser.pugx.org/mrmadclown/laravel-utilities/downloads)](https://packagist.org/packages/mrmadclown/laravel-utilities)
 
 ## Installation
 ```bash
@@ -79,4 +81,20 @@ function middleware(){
     return [new Measure(logger(), \Psr\Log\LogLevel::INFO)];
 }
 ```
+### Validation Rules
 
+#### RecursiveRule
+Passes when each leaf of a nested Array passes the given `\Illuminate\Validation\Rule`
+```php
+use \MrMadClown\LaravelUtilities\Validation\Rules\RecursiveRule;
+
+new RecursiveRule(new SomeRule());
+```
+
+#### OrRule
+Passes when either given `\Illuminate\Validation\Rule` passes.
+```php
+use \MrMadClown\LaravelUtilities\Validation\Rules\OrRule;
+
+new OrRule(new IsStringRule(), new IsIntRule());
+```

@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Rule;
 
 class OrRule implements Rule
 {
-    public function __construct(private Rule $either, private Rule $or)
+    public function __construct(protected Rule $either, protected Rule $or)
     {
     }
 
