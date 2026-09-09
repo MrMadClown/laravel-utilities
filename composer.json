@@ -5,9 +5,9 @@
   "description": "",
   "require": {
     "php": "^8.0",
-    "illuminate/database": "^12.0",
-    "illuminate/support": "^12.0",
-    "illuminate/console": "^12.0",
+    "illuminate/database": "^10.49",
+    "illuminate/support": "^10.49",
+    "illuminate/console": "^10.49",
     "psr/log": "^3.0",
     "ext-json": "*"
   },
